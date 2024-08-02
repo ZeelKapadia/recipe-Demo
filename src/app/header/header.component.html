@@ -1,0 +1,73 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" (click)="collapsed = !collapsed">
+                @for (iconBar of [1,2,3]; track $index) {}
+                <span class="icon-bar"></span>
+            </button>
+            <a routerLink="/" class="navbar-brand">Recipe Book</a>
+        </div>
+        <div class="navbar-collapse" [class.collapse]="collapsed" (window:resize)="collapsed = true">
+            <ul class="nav navbar-nav">
+                @if (isAuthenticated) {
+                <li routerLinkActive="active"><a [routerLink]="['/recipes']">Recipe</a></li>
+                }@if(!isAuthenticated) {
+                <li routerLinkActive="active"><a [routerLink]="['/auth']">Authenticate</a></li>
+                }
+                <li routerLinkActive="active"><a [routerLink]="['/shopping-list']">Shopping List</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                @if (isAuthenticated) {
+                <li style="cursor:pointer">
+                    <a class="nav-link dropdown-toggle" (click)="onLogout()">Logout</a>
+                </li>
+                <li class="dropdown" appDropdown>
+                    <a class=" nav-link dropdown-toggle" role="button">Manage
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li style="cursor:pointer">
+                            <a (click)="onSaveData()">Save Data</a>
+                        </li>
+                        <li style="cursor:pointer">
+                            <a (click)="onGetRecipes()">Fetch Data</a>
+                        </li>
+                    </ul>
+                </li>
+                }
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
+<!-- <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Recipe Book</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Recipe</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Shopping List</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a class="nav-link dropdown-toggle" role="button">Manage <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="">Save Data</a>
+                            <a href="">Fetch Data</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav> -->
